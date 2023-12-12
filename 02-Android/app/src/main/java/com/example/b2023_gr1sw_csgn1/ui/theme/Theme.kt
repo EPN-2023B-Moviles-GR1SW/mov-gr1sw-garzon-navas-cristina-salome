@@ -1,4 +1,4 @@
-package com.example.b2023_gr1sw_csgn.ui.theme
+package com.example.b2023_gr1sw_csgn1.ui.theme
 
 import android.app.Activity
 import android.os.Build
@@ -38,7 +38,7 @@ private val LightColorScheme = lightColorScheme(
 )
 
 @Composable
-fun B2023gr1swcsgnTheme(
+fun B2023gr1swcsgn1Theme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,

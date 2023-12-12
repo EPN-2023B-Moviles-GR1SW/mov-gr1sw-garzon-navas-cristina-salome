@@ -11,7 +11,6 @@ fun main() {
     var mutable: String = "Salome";
     mutable = "Cristina";
 
-
     //  val > var
 
     // Duck Typing
@@ -42,6 +41,7 @@ fun main() {
             println("No sabemos")
         }
     }
+
     val coqueteo = if (estadoCivilWhen == "S") "Si" else "No"
 
 

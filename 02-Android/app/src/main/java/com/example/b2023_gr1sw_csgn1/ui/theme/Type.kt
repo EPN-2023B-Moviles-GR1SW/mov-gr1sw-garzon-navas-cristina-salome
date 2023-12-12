@@ -1,4 +1,4 @@
-package com.example.b2023_gr1sw_csgn.ui.theme
+package com.example.b2023_gr1sw_csgn1.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
