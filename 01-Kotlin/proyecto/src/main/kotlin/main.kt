@@ -241,6 +241,8 @@ class Suma( // Constructor Primario Suma
         if (uno == null) 0 else uno,
         if (dos == null) 0 else uno
     )
+
+
     // public por defecto, o usar private o protected
     public fun sumar(): Int {
         val total = numeroUno + numeroDos
@@ -248,9 +250,6 @@ class Suma( // Constructor Primario Suma
         agregarHistorial(total)
         return total
     }
-
-
-
 
 
     companion object {
@@ -266,9 +265,6 @@ class Suma( // Constructor Primario Suma
         }
     }
 }
-
-
-
 
 // void -> Unit
 fun imprimirNombre(nombre: String): Unit{
