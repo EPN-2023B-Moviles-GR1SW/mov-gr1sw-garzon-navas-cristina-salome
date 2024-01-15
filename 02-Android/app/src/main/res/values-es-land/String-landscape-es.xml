@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <string name="nombre">Cristina</string>
-    <color name="color1">#FF10C8AF</color>
-    <color name="color2">#FFFFFFFF</color>
-    <style name="style1">@android:style/Widget.TextView.PopupMenu</style>
-</resources>
