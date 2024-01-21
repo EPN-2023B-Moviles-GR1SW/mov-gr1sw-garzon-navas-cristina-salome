@@ -20,33 +20,33 @@ class MascotaEditar : AppCompatActivity() {
         // Buscar Mascota
         val mascota = MascotaDAO().getById(id)!!
 
-        // Setear el texto en componentes visuales
+        // Obtiene referencias a los elementos visuales en el diseño
         val nombreM = findViewById<EditText>(R.id.input_mascota)
         val raza = findViewById<EditText>(R.id.input_raza)
         val edadM = findViewById<EditText>(R.id.input_edadM)
         val pesoM = findViewById<EditText>(R.id.input_pesoM)
         val conDuenio = findViewById<Switch>(R.id.input_estado)
 
+        // Establece los valores de la mascota en los elementos visuales
         nombreM.setText(mascota.nombreM)
         raza.setText(mascota.raza)
         edadM.setText(mascota.edadM.toString())
         pesoM.setText(mascota.pesoM.toString())
         conDuenio.isChecked = (mascota.conDuenio == "SI")
 
+        // Configura el botón de actualizar para guardar los cambios en la mascota
+
         val botonActualizar = findViewById<Button>(R.id.btn_actualizar_m)
         botonActualizar.setOnClickListener {
             mascota.nombreM = nombreM.text.toString()
             mascota.raza = raza.text.toString()
-            mascota.edadM = edadM.text.toString().toInt()
-            mascota.pesoM = pesoM.text.toString().toDouble()
+            mascota.edadM = edadM.text.toString().toIntOrNull() ?: 0
+            mascota.pesoM = pesoM.text.toString().toDoubleOrNull() ?: 0.0
             mascota.conDuenio = if (conDuenio.isChecked) "SI" else "NO"
 
+            // Actualiza la mascota en la base de datos
             MascotaDAO().update(mascota)
             mostrarSnackbar("Mascota Actualizada")
-        }
-        val botonVolver = findViewById<Button>(R.id.btn_volver_m)
-        botonVolver.setOnClickListener {
-            finish()
         }
     }
 

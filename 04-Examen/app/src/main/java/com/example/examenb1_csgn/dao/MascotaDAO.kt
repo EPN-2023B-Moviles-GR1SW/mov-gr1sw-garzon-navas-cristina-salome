@@ -5,6 +5,7 @@ import com.example.examenb1_csgn.model.Mascota
 
 class MascotaDAO {
 
+    //Obtiene una mascota por su identificador único.
     fun getById(id: Int): Mascota? {
         var mascotaEncontrada: Mascota? = null
         getAll().forEach { mascota: Mascota ->
@@ -13,10 +14,12 @@ class MascotaDAO {
         return mascotaEncontrada
     }
 
+    //Obtiene todas las mascotas de la base de datos.
     fun getAll(): ArrayList<Mascota> {
         return BD.listaDeMascotas
     }
 
+    //Crea una nueva mascota y la agrega a la base de datos.
     fun create(mascota: Mascota) {
         val listaMascotas = getAll()
         if (listaMascotas.isEmpty()) {
@@ -28,6 +31,7 @@ class MascotaDAO {
         mascota.propietario.listaMascotas.add(mascota)
     }
 
+    //Actualiza la información de una mascota existente en la base de datos.
     fun update(mascotaActualizada: Mascota) {
         val listaMascotas = getAll()
         listaMascotas.forEachIndexed { index, mascota ->
@@ -38,6 +42,7 @@ class MascotaDAO {
         }
     }
 
+    // Elimina una mascota de la base de datos por su identificador único.
     fun deleteById(id: Int) {
         val mascota = getById(id)
         if (mascota != null) {

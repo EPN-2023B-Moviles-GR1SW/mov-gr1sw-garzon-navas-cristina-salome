@@ -60,11 +60,11 @@ class MascotaVer : AppCompatActivity() {
     fun crearMascota() {
         val mascota = Mascota(
             null,
-            "Candy",
-            "French",
+            "Nueva Mascota",
+            " ",
             11,
             10.0,
-            "SI",
+            " SI",
             propietario
         )
         MascotaDAO().create(mascota)

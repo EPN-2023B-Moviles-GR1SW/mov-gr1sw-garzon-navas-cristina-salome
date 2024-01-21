@@ -8,6 +8,8 @@ class Propietario(
     var anioRegistro: Int,
     var listaMascotas: ArrayList<Mascota> = arrayListOf()
 ) {
+
+    //Constructor que inicializa los atributos con valores predeterminados.
     constructor() : this(null, "", 0, false, 0)
 
     override fun toString(): String {
