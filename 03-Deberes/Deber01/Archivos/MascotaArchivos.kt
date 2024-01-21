@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import Modelos.Mascota
 
-class MascotaRepository(private val fileName: String) {
+class MascotaArchivos(private val fileName: String) {
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
     fun guardarMascota(mascota: Mascota) {

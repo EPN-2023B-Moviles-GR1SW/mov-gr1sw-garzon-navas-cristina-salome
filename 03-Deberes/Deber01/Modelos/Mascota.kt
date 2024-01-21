@@ -3,6 +3,7 @@ package Modelos
 
 import java.text.SimpleDateFormat
 import java.util.Date
+import Archivos.MascotaArchivos
 
 class Mascota(
     var id: Int,
@@ -14,7 +15,7 @@ class Mascota(
     var nombrePropietario: String, 
     var fechaRegistro: Date
 ) {
-    private val MascotaArchivos = (System.getProperty("user.dir")+ "\\src\\main\\kotlin\\archivos\\Mascotas.txt")
+    private val mascotaArchivos = MascotaArchivos(System.getProperty("user.dir")+ "\\Deber01\\Datos\\MacotaData.txt")
 
     constructor(
         id: Int,
@@ -37,25 +38,25 @@ class Mascota(
     )
 
     fun guardarMascota() {
-        mascotaRepository.guardarMascota(this)
+        mascotaArchivos.guardarMascota(this)
         println("Guardando mascota: $nombre")
     }
 
     fun obtenerMascota(id: Int): Mascota {
-        return mascotaRepository.obtenerMascota(id)
+        return mascotaArchivos.obtenerMascota(id)
     }
 
     fun obtenerMascotas(): List<Mascota> {
-        return mascotaRepository.obtenerMascotas()
+        return mascotaArchivos.obtenerMascotas()
     }
 
     fun actualizarMascota() {
-        mascotaRepository.actualizarMascota(this)
+        mascotaArchivos.actualizarMascota(this)
         println("Actualizando mascota: $nombre")
     }
 
     fun eliminarMascota() {
-        mascotaRepository.eliminarMascota(this.id)
+        mascotaArchivos.eliminarMascota(this.id)
         println("Eliminando mascota: $nombre")
     }
 

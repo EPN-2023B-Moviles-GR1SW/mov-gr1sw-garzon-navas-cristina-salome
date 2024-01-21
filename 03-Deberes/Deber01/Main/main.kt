@@ -1,19 +1,21 @@
-package main
+package Main
 
 import Modelos.Propietario
 import Modelos.Mascota
 import java.text.SimpleDateFormat
 import java.util.*
+import Archivos.PropietarioArchivos
+import Archivos.MascotaArchivos
 
 fun main() {
-    val propietarioArchivos = PropietarioArchivos(System.getProperty("user.dir") + "\\src\\main\\kotlin\\Datos\\Propietarios.txt")
-    val mascotaArchivos = MascotaRepository(System.getProperty("user.dir") + "\\src\\main\\kotlin\\Datos\\Mascotas.txt")
+    val propietarioArchivos = PropietarioArchivos(System.getProperty("user.dir")+ "\\Deber01\\Datos\\PropietarioData.txt")
+    val mascotaArchivos = MascotaArchivos(System.getProperty("user.dir")+ "\\Deber01\\Datos\\MascotaData.txt")
 
     val scanner = Scanner(System.`in`)
     var opcion: Int
 
     do {
-        println("=== Menú CRUD ===")
+        println("=== Menú ===")
         println("1. Agregar Propietario")
         println("2. Agregar Mascota")
         println("3. Mostrar Propietarios")
@@ -84,7 +86,7 @@ fun agregarPropietario(propietarioArchivos: PropietarioArchivos) {
     println("Propietario agregado correctamente.\n")
 }
 
-fun agregarMascota(mascotaArchivos: PropietarioRepository, mascotaRepository: MascotaRepository) {
+fun agregarMascota(propietarioArchivos: PropietarioArchivos, mascotaArchivos: MascotaArchivos) {
     println("=== Agregar Mascota ===")
     print("ID: ")
     val id = readLine()?.toInt() ?: 0
@@ -112,26 +114,26 @@ fun agregarMascota(mascotaArchivos: PropietarioRepository, mascotaRepository: Ma
     val fechaRegistro = SimpleDateFormat("dd/MM/yyyy").parse(fechaRegistroStr)
 
     val nuevaMascota = Mascota(id, nombre, raza, edad, peso, propietarioId, nombrePropietario, fechaRegistro)
-    mascotaRepository.guardarMascota(nuevaMascota)
+    mascotaArchivos.guardarMascota(nuevaMascota)
 
     println("Mascota agregada correctamente.\n")
 }
 
-fun mostrarPropietarios(propietarioRepository: PropietarioRepository) {
+fun mostrarPropietarios(propietarioArchivos: PropietarioArchivos) {
     println("=== Propietarios ===")
-    val propietarios = propietarioRepository.obtenerPropietarios()
+    val propietarios = propietarioArchivos.obtenerPropietarios()
     propietarios.forEach { println(it) }
     println()
 }
 
-fun mostrarMascotas(mascotaRepository: MascotaRepository) {
+fun mostrarMascotas(mascotaArchivos: MascotaArchivos) {
     println("=== Mascotas ===")
-    val mascotas = mascotaRepository.obtenerMascotas()
+    val mascotas = mascotaArchivos.obtenerMascotas()
     mascotas.forEach { println(it) }
     println()
 }
 
-fun actualizarPropietario(propietarioRepository: PropietarioRepository) {
+fun actualizarPropietario(propietarioArchivos: PropietarioArchivos) {
     println("=== Actualizar Propietario ===")
     // Capturar ID del propietario a actualizar
     print("Ingrese el ID del Propietario a actualizar: ")
@@ -139,7 +141,7 @@ fun actualizarPropietario(propietarioRepository: PropietarioRepository) {
 
     if (idActualizar != null) {
         // Verificar si el propietario existe
-        val propietarioExistente = propietarioRepository.obtenerPropietario(idActualizar)
+        val propietarioExistente = propietarioArchivos.obtenerPropietario(idActualizar)
 
         // Si el propietario existe, permitir la actualización
         if (propietarioExistente != null) {
@@ -158,7 +160,7 @@ fun actualizarPropietario(propietarioRepository: PropietarioRepository) {
             val nuevaFechaRegistro = if (nuevaFechaRegistroStr.isNullOrBlank()) propietarioExistente.fechaRegistro else SimpleDateFormat("dd/MM/yyyy").parse(nuevaFechaRegistroStr)
 
             val propietarioActualizado = Propietario(idActualizar, nuevoNombre, nuevaEdad, nuevaTieneMascotas, nuevaFechaRegistro)
-            propietarioRepository.actualizarPropietario(propietarioActualizado)
+            propietarioArchivos.actualizarPropietario(propietarioActualizado)
             println("Propietario actualizado correctamente.\n")
         } else {
             println("No se encontró un Propietario con el ID proporcionado.\n")
@@ -168,7 +170,7 @@ fun actualizarPropietario(propietarioRepository: PropietarioRepository) {
     }
 }
 
-fun actualizarMascota(PropietarioArchivos: PropietarioArchivos, MascotaArchivos: MascotaArchivos) {
+fun actualizarMascota(propietarioArchivos: PropietarioArchivos, mascotaArchivos: MascotaArchivos) {
     println("=== Actualizar Mascota ===")
     // Capturar ID de la mascota a actualizar
     print("Ingrese el ID de la Mascota a actualizar: ")
@@ -176,7 +178,7 @@ fun actualizarMascota(PropietarioArchivos: PropietarioArchivos, MascotaArchivos:
 
     if (idActualizar != null) {
         // Verificar si la mascota existe
-        val mascotaExistente = mascotaRepository.obtenerMascota(idActualizar)
+        val mascotaExistente = mascotaArchivos.obtenerMascota(idActualizar)
 
         // Si la mascota existe, permitir la actualización
         if (mascotaExistente != null) {
@@ -204,7 +206,7 @@ fun actualizarMascota(PropietarioArchivos: PropietarioArchivos, MascotaArchivos:
             val nuevaFechaRegistro = if (nuevaFechaRegistroStr.isNullOrBlank()) mascotaExistente.fechaRegistro else SimpleDateFormat("dd/MM/yyyy").parse(nuevaFechaRegistroStr)
 
             val mascotaActualizada = Mascota(idActualizar, nuevoNombre, nuevaRaza, nuevaEdad, nuevoPeso, nuevoPropietarioId, nuevoNombrePropietario, nuevaFechaRegistro)
-            mascotaRepository.actualizarMascota(mascotaActualizada)
+            mascotaArchivos.actualizarMascota(mascotaActualizada)
             println("Mascota actualizada correctamente.\n")
         } else {
             println("No se encontró una Mascota con el ID proporcionado.\n")
@@ -214,7 +216,7 @@ fun actualizarMascota(PropietarioArchivos: PropietarioArchivos, MascotaArchivos:
     }
 }
 
-fun eliminarPropietario(propietarioRepository: PropietarioRepository) {
+fun eliminarPropietario(propietarioArchivos: PropietarioArchivos) {
     println("=== Eliminar Propietario ===")
     // Capturar ID del propietario a eliminar
     print("Ingrese el ID del Propietario a eliminar: ")
@@ -222,11 +224,11 @@ fun eliminarPropietario(propietarioRepository: PropietarioRepository) {
 
     if (idEliminar != null) {
         // Verificar si el propietario existe
-        val propietarioExistente = propietarioRepository.obtenerPropietario(idEliminar)
+        val propietarioExistente = propietarioArchivos.obtenerPropietario(idEliminar)
 
         // Si el propietario existe, permitir la eliminación
         if (propietarioExistente != null) {
-            propietarioRepository.eliminarPropietario(idEliminar)
+            propietarioArchivos.eliminarPropietario(idEliminar)
             println("Propietario eliminado correctamente.\n")
         } else {
             println("No se encontró un Propietario con el ID proporcionado.\n")
@@ -236,7 +238,7 @@ fun eliminarPropietario(propietarioRepository: PropietarioRepository) {
     }
 }
 
-fun eliminarMascota(mascotaRepository: MascotaRepository) {
+fun eliminarMascota(mascotaRepository: MascotaArchivos) {
     println("=== Eliminar Mascota ===")
     // Capturar ID de la mascota a eliminar
     print("Ingrese el ID de la Mascota a eliminar: ")

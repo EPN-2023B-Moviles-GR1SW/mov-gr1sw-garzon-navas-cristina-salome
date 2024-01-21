@@ -2,6 +2,8 @@ package Modelos
 
 import java.text.SimpleDateFormat
 import java.util.Date
+import Archivos.PropietarioArchivos
+
 
 class Propietario(
     var id: Int,
@@ -10,28 +12,28 @@ class Propietario(
     var tieneMascotas: Boolean,
     var fechaRegistro: Date
 ) {
-    private val propietarioRepository = PropietarioArchivos(System.getProperty("user.dir")+ "\\src\\main\\kotlin\\Datos\\Propietarios.txt")
+    private val propietarioArchivos = PropietarioArchivos(System.getProperty("user.dir")+ "\\Deber01\\Datos\\PropietarioData.txt")
 
     fun guardarPropietario() {
-        propietarioRepository.guardarPropietario(this)
+        propietarioArchivos.guardarPropietario(this)
         println("Guardando propietario: $nombre")
     }
 
     fun obtenerPropietario(id: Int): Propietario {
-        return propietarioRepository.obtenerPropietario(id)
+        return propietarioArchivos.obtenerPropietario(id)
     }
 
     fun obtenerPropietarios(): List<Propietario> {
-        return propietarioRepository.obtenerPropietarios()
+        return propietarioArchivos.obtenerPropietarios()
     }
 
     fun actualizarPropietario() {
-        propietarioRepository.actualizarPropietario(this)
+        propietarioArchivos.actualizarPropietario(this)
         println("Actualizando propietario: $nombre")
     }
 
     fun eliminarPropietario() {
-        propietarioRepository.eliminarPropietario(this.id)
+        propietarioArchivos.eliminarPropietario(this.id)
         println("Eliminando propietario: $nombre")
     }
 

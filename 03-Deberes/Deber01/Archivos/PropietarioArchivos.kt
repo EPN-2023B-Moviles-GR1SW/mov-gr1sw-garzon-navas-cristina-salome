@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 import Modelos.Propietario
 
-class PropietarioRepository(private val fileName: String) {
+class PropietarioArchivos(private val fileName: String) {
     private val dateFormat = SimpleDateFormat("dd/MM/yyyy")
 
     fun guardarPropietario(propietario: Propietario) {
