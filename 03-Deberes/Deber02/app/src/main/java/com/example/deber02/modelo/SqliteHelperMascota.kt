@@ -13,14 +13,14 @@ class SqliteHelperMascota(
     contexto: Context,
 ) : SQLiteOpenHelper(
     contexto,
-    "resenias",
+    "macotas",
     null,
     1
 ) {
     override fun onCreate(db: SQLiteDatabase?) {
-        val scriptSQLCrearTablaResenia =
+        val scriptSQLCrearTablaMascota =
             """
-               CREATE TABLE RESENIA (
+               CREATE TABLE MASCOTA (
                    ID INTEGER PRIMARY KEY,
                    COMENTARIO TEXT,
                    PUNTUACION INTEGER,
@@ -30,7 +30,7 @@ class SqliteHelperMascota(
                    FOREIGN KEY(PRODUCTO_ID) REFERENCES PRODUCTO(ID)
                )
             """.trimIndent()
-        db?.execSQL(scriptSQLCrearTablaResenia)
+        db?.execSQL(scriptSQLCrearTablaMascota)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
@@ -42,12 +42,12 @@ class SqliteHelperMascota(
         valoresAGuardar.put("COMENTARIO", comentario)
         valoresAGuardar.put("PUNTUACION", calificacion)
         valoresAGuardar.put("APROBADA", if (recomendado) 1 else 0)
-        valoresAGuardar.put("FECHA_RESENIA", formatDate(fechaPublicacion))
+        valoresAGuardar.put("FECHA_MASCOTA", formatDate(fechaPublicacion))
         valoresAGuardar.put("PRODUCTO_ID", productoId)
 
         val resultadoGuardar = basedatosEscritura
             .insert(
-                "RESENIA",
+                "MASCOTA",
                 null,
                 valoresAGuardar
             )
@@ -61,12 +61,12 @@ class SqliteHelperMascota(
         valoresAActualizar.put("COMENTARIO", comentario)
         valoresAActualizar.put("PUNTUACION", calificacion)
         valoresAActualizar.put("APROBADA", if (recomendado) 1 else 0)
-        valoresAActualizar.put("FECHA_RESENIA", formatDate(fechaPublicacion))
+        valoresAActualizar.put("FECHA_MASCOTA", formatDate(fechaPublicacion))
 
         val parametrosConsultaActualizar = arrayOf(id.toString())
         val resultadoActualizacion = basedatosEscritura
             .update(
-                "RESENIA",
+                "MASCOTA",
                 valoresAActualizar,
                 "ID=?",
                 parametrosConsultaActualizar
@@ -85,10 +85,10 @@ class SqliteHelperMascota(
             parametrosConsultaLectura
         )
 
-        val existeResenia = resultadoConsultaLectura.moveToFirst()
-        var reseniaEncontrada = Mascota(0, "", 0, false, Date())
+        val existeMascota = resultadoConsultaLectura.moveToFirst()
+        var mascotaEncontrada = Mascota(0, "", 0, false, Date())
 
-        if (existeResenia) {
+        if (existeMascota) {
             val id = resultadoConsultaLectura.getInt(0)
             val comentario = resultadoConsultaLectura.getString(1)
             val calificacion = resultadoConsultaLectura.getInt(2)
@@ -96,19 +96,19 @@ class SqliteHelperMascota(
             val fechaResenaString = resultadoConsultaLectura.getString(4)
             val fechaResena = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(fechaResenaString)
 
-            reseniaEncontrada = Mascota(id, comentario, calificacion, recomendado, fechaResena ?: Date())
+            mascotaEncontrada = Mascota(id, comentario, calificacion, recomendado, fechaResena ?: Date())
         }
 
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-        return reseniaEncontrada
+        return mascotaEncontrada
     }
-    fun eliminarResenia(id: Int): Boolean {
+    fun eliminarMascota(id: Int): Boolean {
         val conexionEscritura = writableDatabase
         val parametrosConsultaDelete = arrayOf(id.toString())
         val resultadoEliminacion = conexionEscritura
             .delete(
-                "RESENIA",
+                "MASCOTA",
                 "ID=?",
                 parametrosConsultaDelete
             )
@@ -116,17 +116,17 @@ class SqliteHelperMascota(
         return resultadoEliminacion.toInt() != -1
     }
 
-    // Método para obtener todas las reseñas de un producto
+    // Método para obtener todas las mascotas de un propietario
     fun getReseniasDeProducto(productoId: Int): MutableList<Mascota> {
         val baseDatosLectura = readableDatabase
-        val scriptConsultaLectura = "SELECT * FROM RESENIA WHERE PRODUCTO_ID = ?"
+        val scriptConsultaLectura = "SELECT * FROM MASCOTA WHERE PROPIETARIO_ID = ?"
         val parametrosConsultaLectura = arrayOf(productoId.toString())
         val resultadoConsultaLectura: Cursor = baseDatosLectura.rawQuery(
             scriptConsultaLectura,
             parametrosConsultaLectura
         )
 
-        val resenias = mutableListOf<Mascota>()
+        val mascota = mutableListOf<Mascota>()
 
         if (resultadoConsultaLectura.moveToFirst()) {
             do {
@@ -137,14 +137,14 @@ class SqliteHelperMascota(
                 val fechaResenaString = resultadoConsultaLectura.getString(4)
                 val fechaResena = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(fechaResenaString)
 
-                val resenia = Mascota(id, comentario, calificacion, recomendado, fechaResena ?: Date())
-                resenias.add(resenia)
+                val mascot = Mascota(id, comentario, calificacion, recomendado, fechaResena ?: Date())
+                mascota.add(mascot)
             } while (resultadoConsultaLectura.moveToNext())
         }
 
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-        return resenias
+        return mascota
     }
 
     private fun formatDate(date: Date): String {

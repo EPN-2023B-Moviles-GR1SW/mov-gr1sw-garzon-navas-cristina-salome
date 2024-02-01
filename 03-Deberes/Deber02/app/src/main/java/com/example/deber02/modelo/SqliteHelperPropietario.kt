@@ -18,7 +18,7 @@ class SqliteHelperPropietario(
     1
 ) {
     override fun onCreate(db: SQLiteDatabase?) {
-        val scriptSQLCrearTablaProducto =
+        val scriptSQLCrearTablaPropietario =
             """
                CREATE TABLE PRODUCTO (
                    ID INTEGER PRIMARY KEY,
@@ -28,7 +28,7 @@ class SqliteHelperPropietario(
                    FECHA_CREACION TEXT
                )
             """.trimIndent()
-        db?.execSQL(scriptSQLCrearTablaProducto)
+        db?.execSQL(scriptSQLCrearTablaPropietario)
     }
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {}
@@ -43,7 +43,7 @@ class SqliteHelperPropietario(
         valoresAGuardar.put("FECHA_CREACION", formatDate(fechaCreacion))
         val resultadoGuardar = basedatosEscritura
             .insert(
-                "PRODUCTO",
+                "PROPIETARIO",
                 null,
                 valoresAGuardar
             )
@@ -62,7 +62,7 @@ class SqliteHelperPropietario(
         val parametrosConsultaActualizar = arrayOf(id.toString())
         val resultadoActualizacion = basedatosEscritura
             .update(
-                "PRODUCTO",
+                "PROPIETARIO",
                 valoresAActualizar,
                 "ID=?",
                 parametrosConsultaActualizar
@@ -76,7 +76,7 @@ class SqliteHelperPropietario(
         val parametrosConsultaDelete = arrayOf(id.toString())
         val resultadoEliminacion = conexionEscritura
             .delete(
-                "PRODUCTO",
+                "PROPIETARIO",
                 "ID=?",
                 parametrosConsultaDelete
             )
@@ -93,12 +93,12 @@ class SqliteHelperPropietario(
             parametrosConsultaLectura
         )
 
-        val existeProducto = resultadoConsultaLectura.moveToFirst()
-        var productoEncontrado = Propietario(0,"default","defaul",0.00,Date(),
+        val existePropietario = resultadoConsultaLectura.moveToFirst()
+        var propietarioEncontrado = Propietario(0,"default","defaul",0.00,Date(),
 
         )
 
-        if (existeProducto) {
+        if (existePropietario) {
             val id = resultadoConsultaLectura.getInt(0)
             val nombre = resultadoConsultaLectura.getString(1)
             val descripcion = resultadoConsultaLectura.getString(2)
@@ -106,12 +106,12 @@ class SqliteHelperPropietario(
             val fechaCreacionString = resultadoConsultaLectura.getString(4)
             val fechaCreacion = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).parse(fechaCreacionString)
 
-            productoEncontrado = Propietario(id, nombre, descripcion, precio, fechaCreacion ?: Date())
+            propietarioEncontrado = Propietario(id, nombre, descripcion, precio, fechaCreacion ?: Date())
         }
 
         resultadoConsultaLectura.close()
         baseDatosLectura.close()
-        return productoEncontrado
+        return propietarioEncontrado
     }
 
     fun getProductos():MutableList<Propietario>{

@@ -13,23 +13,23 @@ class CrearPropietario : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_crear_propietario)
 
-        val btnCrearNuevoProducto = findViewById<Button>(R.id.btn_crear_nuevoprod)
+        val btnCrearNuevoProducto = findViewById<Button>(R.id.btn_crear_nuevoprop)
         btnCrearNuevoProducto.setOnClickListener {
             crearNuevoProducto()
             irActividad(ListViewPropietario::class.java)
         }
 
-        val btnCancelar = findViewById<Button>(R.id.btn_cancelar_crearprod)
+        val btnCancelar = findViewById<Button>(R.id.btn_cancelar_crearprop)
         btnCancelar.setOnClickListener { irActividad(ListViewPropietario::class.java) }
     }
 
     fun crearNuevoProducto() {
-        val id = findViewById<EditText>(R.id.inp_idProducto)
+        val id = findViewById<EditText>(R.id.inp_idPropietario)
         val nombre = findViewById<EditText>(R.id.inp_nombre)
         val descripcion = findViewById<EditText>(R.id.inp_desc)
         val precio = findViewById<EditText>(R.id.inp_precio)
 
-        BaseDatos.tablaProducto!!.crearProducto(
+        BaseDatos.tablaPropietario!!.crearProducto(
             id.text.toString().toInt(),
             nombre.text.toString(),
             descripcion.text.toString(),

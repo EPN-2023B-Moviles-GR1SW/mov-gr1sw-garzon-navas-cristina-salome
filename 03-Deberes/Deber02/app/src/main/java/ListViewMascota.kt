@@ -18,8 +18,8 @@ import com.google.android.material.snackbar.Snackbar
 
 
 class ListViewMascota : AppCompatActivity() {
-    var productoElegido = BaseDatos.productoElegido
-    var reseniasProducto = BaseDatos.tablaResenia?.getReseniasDeProducto(BaseDatos.productoElegido.id)
+    var propietarioElegido = BaseDatos.propietarioElegido
+    var mascotaPropietario = BaseDatos.tablaMascota?.getReseniasDeProducto(BaseDatos.propietarioElegido.id)
     var posicionItem = 0
 
 
@@ -28,7 +28,7 @@ class ListViewMascota : AppCompatActivity() {
         setContentView(R.layout.activity_list_view_mascota)
         cargarResenias()
         val nombreProducto = findViewById<TextView>(R.id.tv_nombre_prod)
-        nombreProducto.text = productoElegido.nombre
+        nombreProducto.text = propietarioElegido.nombre
 
         val botonVolver = findViewById<Button>(R.id.btn_volver)
         botonVolver.setOnClickListener{
@@ -74,17 +74,17 @@ class ListViewMascota : AppCompatActivity() {
         val posicion = info.position
         posicionItem = posicion
         mostrarSnackbar("${posicion}")
-        BaseDatos.reseniaElegida = productoElegido.mascota!!.get(posicion)
+        BaseDatos.mascotaElegida = propietarioElegido.mascota!!.get(posicion)
     }
 
     private fun cargarResenias(){
         val listView = findViewById<ListView>(R.id.lv_resenia)
-        reseniasProducto = BaseDatos.tablaResenia!!.getReseniasDeProducto(BaseDatos.productoElegido.id)
-        if (reseniasProducto != null) {
+        mascotaPropietario = BaseDatos.tablaMascota!!.getReseniasDeProducto(BaseDatos.propietarioElegido.id)
+        if (mascotaPropietario != null) {
             val adapter = ArrayAdapter(
                 this,
                 android.R.layout.simple_list_item_1,
-                reseniasProducto!!
+                mascotaPropietario!!
             )
             listView.adapter = adapter
             adapter.notifyDataSetChanged()
@@ -112,7 +112,7 @@ class ListViewMascota : AppCompatActivity() {
     }
 
     fun eliminarResenia (){
-        BaseDatos.tablaResenia!!.eliminarResenia(BaseDatos.productoElegido.id)
+        BaseDatos.tablaMascota!!.eliminarMascota(BaseDatos.propietarioElegido.id)
         cargarResenias()
     }
 

@@ -8,7 +8,7 @@
     tools:context=".CrearPropietario">
 
     <EditText
-        android:id="@+id/inp_idProducto"
+        android:id="@+id/inp_idPropietario"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -53,7 +53,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btn_cancelar_crearprod"
+        android:id="@+id/btn_cancelar_crearprop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="64dp"
@@ -64,12 +64,12 @@
         app:layout_constraintVertical_bias="0.619" />
 
     <Button
-        android:id="@+id/btn_crear_nuevoprod"
+        android:id="@+id/btn_crear_nuevoprop"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Crear"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_crearprod"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_crearprop"
         app:layout_constraintHorizontal_bias="0.48"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

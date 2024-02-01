@@ -18,10 +18,10 @@ class EditarPropietario : AppCompatActivity() {
         val desc = findViewById<EditText>(R.id.inp_editarDesc)
         val precio = findViewById<EditText>(R.id.inp_editarPrecio)
 
-        id.setText(BaseDatos.productoElegido.id.toString())
-        nombre.setText(BaseDatos.productoElegido.nombre)
-        desc.setText(BaseDatos.productoElegido.descripcion)
-        precio.setText(BaseDatos.productoElegido.precio.toString())
+        id.setText(BaseDatos.propietarioElegido.id.toString())
+        nombre.setText(BaseDatos.propietarioElegido.nombre)
+        desc.setText(BaseDatos.propietarioElegido.descripcion)
+        precio.setText(BaseDatos.propietarioElegido.precio.toString())
 
         val btnEditarProducto = findViewById<Button>(R.id.btn_editar_prodexist)
         btnEditarProducto.setOnClickListener{
@@ -43,7 +43,7 @@ class EditarPropietario : AppCompatActivity() {
         val desc = findViewById<EditText>(R.id.inp_editarDesc)
         val precio = findViewById<EditText>(R.id.inp_editarPrecio)
 
-        BaseDatos.tablaProducto!!.actualizarProducto(
+        BaseDatos.tablaPropietario!!.actualizarProducto(
             id.text.toString().toInt(),
             nombre.text.toString(),
             desc.text.toString(),

@@ -6,15 +6,15 @@ import java.util.Date
 
 class BaseDatos {
     companion object {
-        var tablaProducto: SqliteHelperPropietario ?= null
-        var tablaResenia: SqliteHelperMascota ? = null
-        var productoElegido= Propietario(0,"default","defaul",0.00,Date(), arrayListOf())
-        var reseniaElegida = Mascota(1,"", 0, true, Date())
-        var productoSeleccionadoId: Int? = null
+        var tablaPropietario: SqliteHelperPropietario ?= null
+        var tablaMascota: SqliteHelperMascota ? = null
+        var propietarioElegido= Propietario(0,"default","defaul",0.00,Date(), arrayListOf())
+        var mascotaElegida = Mascota(1,"", 0, true, Date())
+        var propietarioSeleccionadoId: Int? = null
 
         // Método para seleccionar un producto
         fun seleccionarProducto(id: Int) {
-            productoSeleccionadoId = id
+            propietarioSeleccionadoId = id
         }
 
 

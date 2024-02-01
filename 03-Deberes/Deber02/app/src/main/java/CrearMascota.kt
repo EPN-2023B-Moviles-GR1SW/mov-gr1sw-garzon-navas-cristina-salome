@@ -20,29 +20,29 @@ class CrearMascota : AppCompatActivity() {
 
         radioT = findViewById(R.id.rdb_recom_true_editar)
         radioF = findViewById(R.id.rdb_recom_false_editar)
-        val btnCrearNuevaResenia = findViewById<Button>(R.id.btn_crear_nuevares)
-        btnCrearNuevaResenia.setOnClickListener{
-            crearNuevaResenia()
+        val btnCrearNuevaMascota = findViewById<Button>(R.id.btn_crear_nuevamas)
+        btnCrearNuevaMascota.setOnClickListener{
+            crearNuevaMascota()
             irActividad(ListViewMascota::class.java)
         }
 
-        val btnCancelar = findViewById<Button>(R.id.btn_cancelar_crearres)
+        val btnCancelar = findViewById<Button>(R.id.btn_cancelar_crearmas)
         btnCancelar.setOnClickListener{irActividad(ListViewPropietario:: class.java)}
     }
 
-    fun crearNuevaResenia(){
-        val id = findViewById<EditText>(R.id.inp_idResenia)
+    fun crearNuevaMascota(){
+        val id = findViewById<EditText>(R.id.inp_idMascota)
         val comentario = findViewById<EditText>(R.id.inp_comentario)
         val calificacion = findViewById<EditText>(R.id.inp_calificacion)
         val recomendado: Boolean = radioT?.isChecked == true
 
 
         val nuevaMascota = Mascota(id.text.toString().toInt(),comentario.text.toString(),calificacion.text.toString().toInt(), recomendado, Date())
-        BaseDatos.productoElegido.mascota.add(nuevaMascota)
+        BaseDatos.propietarioElegido.mascota.add(nuevaMascota)
 
 
-        BaseDatos.tablaResenia!!.crearResenia(
-            id.text.toString().toInt(),comentario.text.toString(),calificacion.text.toString().toInt(), recomendado, Date() , BaseDatos.productoElegido.id
+        BaseDatos.tablaMascota!!.crearResenia(
+            id.text.toString().toInt(),comentario.text.toString(),calificacion.text.toString().toInt(), recomendado, Date() , BaseDatos.propietarioElegido.id
         )
     }
 

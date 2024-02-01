@@ -24,14 +24,14 @@ class ListViewPropietario : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_list_view_propietario)
-        BaseDatos.tablaProducto = SqliteHelperPropietario(this)
-        BaseDatos.tablaResenia = SqliteHelperMascota(this)
+        BaseDatos.tablaPropietario = SqliteHelperPropietario(this)
+        BaseDatos.tablaMascota = SqliteHelperMascota(this)
 
 
         cargarProductos()
         val btnAnadirListView = findViewById<Button>( R.id.btn_crear_prod)
         btnAnadirListView.setOnClickListener{
-            agregarProducto()
+            agregarPropietario()
         }
         val listView = findViewById<ListView>(R.id.lv_producto)
 
@@ -41,7 +41,7 @@ class ListViewPropietario : AppCompatActivity() {
 
     private fun cargarProductos(){
         val listView = findViewById<ListView>(R.id.lv_producto)
-        arregloPropietario = BaseDatos.tablaProducto!!.getProductos()
+        arregloPropietario = BaseDatos.tablaPropietario!!.getProductos()
         if (arregloPropietario != null) {
             val adapter = ArrayAdapter(
                 this,
@@ -68,8 +68,8 @@ class ListViewPropietario : AppCompatActivity() {
         val posicion = info.position
         posicionItem = posicion
         mostrarSnackbar("${posicion}")
-        BaseDatos.productoElegido = arregloPropietario!![posicion]
-        BaseDatos.productoElegido.mascota = BaseDatos.tablaResenia?.getReseniasDeProducto(BaseDatos.productoElegido.id)!!
+        BaseDatos.propietarioElegido = arregloPropietario!![posicion]
+        BaseDatos.propietarioElegido.mascota = BaseDatos.tablaMascota?.getReseniasDeProducto(BaseDatos.propietarioElegido.id)!!
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
@@ -94,7 +94,7 @@ class ListViewPropietario : AppCompatActivity() {
         }
     }
 
-    fun agregarProducto() {
+    fun agregarPropietario() {
         irActividad(CrearPropietario:: class.java)
         cargarProductos()
     }
@@ -121,7 +121,7 @@ class ListViewPropietario : AppCompatActivity() {
     }
 
     fun eliminarProducto (){
-        BaseDatos.tablaProducto!!.eliminarProducto(BaseDatos.productoElegido.id)
+        BaseDatos.tablaPropietario!!.eliminarProducto(BaseDatos.propietarioElegido.id)
         cargarProductos()
     }
     fun mostrarSnackbar(texto:String){

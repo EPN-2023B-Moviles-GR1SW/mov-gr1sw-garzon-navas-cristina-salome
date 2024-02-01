@@ -24,21 +24,21 @@ class EditarMascota : AppCompatActivity() {
         radioTrue = findViewById(R.id.rdb_recom_true_editar)
         radioFalse = findViewById(R.id.rdb_recom_false_editar)
 
-        id.setText(BaseDatos.reseniaElegida.id.toString())
-        comentario.setText(BaseDatos.reseniaElegida.comentario)
-        calificacion.setText(BaseDatos.reseniaElegida.calificacion.toString())
-        val recomendado: Boolean = BaseDatos.reseniaElegida.recomendado
+        id.setText(BaseDatos.mascotaElegida.id.toString())
+        comentario.setText(BaseDatos.mascotaElegida.comentario)
+        calificacion.setText(BaseDatos.mascotaElegida.calificacion.toString())
+        val recomendado: Boolean = BaseDatos.mascotaElegida.recomendado
         radioTrue?.isChecked = recomendado
         radioFalse?.isChecked = !recomendado
 
         val btnEditarResenia = findViewById<Button>(R.id.btn_editarResenia)
         btnEditarResenia.setOnClickListener {
-            editarResenia()
+            editarMascota()
             irActividad(ListViewMascota::class.java)
         }
     }
 
-    private fun editarResenia() {
+    private fun editarMascota() {
         val id = findViewById<EditText>(R.id.inp_editarIdResenia)
         val comentario = findViewById<EditText>(R.id.inp_editarComentario)
         val calificacion = findViewById<EditText>(R.id.inp_editarCalificacion)
@@ -52,12 +52,12 @@ class EditarMascota : AppCompatActivity() {
             Date()
         )
 
-        BaseDatos.tablaResenia!!.actualizarResenia(id.text.toString().toInt(),
+        BaseDatos.tablaMascota!!.actualizarResenia(id.text.toString().toInt(),
             comentario.text.toString(),
             calificacion.text.toString().toInt(),
             recomendado,
             Date(),
-            BaseDatos.productoElegido.id
+            BaseDatos.propietarioElegido.id
         )
 
     }
