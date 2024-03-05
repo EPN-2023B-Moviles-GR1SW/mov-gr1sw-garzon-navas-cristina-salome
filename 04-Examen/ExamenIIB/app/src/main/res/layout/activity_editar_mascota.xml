@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditarResenia">
+
+    <TextView
+        android:id="@+id/tv_recomendado_editar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Recomendado"
+        app:layout_constraintBottom_toTopOf="@+id/rdg_recomendado_editar"
+        app:layout_constraintEnd_toEndOf="@+id/rdg_recomendado_editar"
+        app:layout_constraintStart_toStartOf="@+id/rdg_recomendado_editar" />
+
+    <RadioGroup
+        android:id="@+id/rdg_recomendado_editar"
+        android:layout_width="206dp"
+        android:layout_height="66dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.472">
+
+        <RadioButton
+            android:id="@+id/rdb_recom_true_editar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="True" />
+
+        <RadioButton
+            android:id="@+id/rdb_recom_false_editar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="False" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tv_editarResenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Reseña"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.156"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.103" />
+
+    <EditText
+        android:id="@+id/inp_editarIdResenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:ems="10"
+        android:hint="Ingresa el ID"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/inp_editarComentario"
+        app:layout_constraintEnd_toEndOf="@+id/inp_editarComentario"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inp_editarComentario" />
+
+    <EditText
+        android:id="@+id/inp_editarCalificacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingresa la Calificacion"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/tv_recomendado_editar"
+        app:layout_constraintEnd_toEndOf="@+id/tv_recomendado_editar"
+        app:layout_constraintStart_toStartOf="@+id/tv_recomendado_editar" />
+
+    <EditText
+        android:id="@+id/inp_editarComentario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:ems="10"
+        android:hint="Ingresa el Comentario"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/inp_editarCalificacion"
+        app:layout_constraintEnd_toEndOf="@+id/inp_editarCalificacion"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/inp_editarCalificacion" />
+
+    <Button
+        android:id="@+id/btn_editarResenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_editarResenia"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
+
+    <Button
+        android:id="@+id/btn_cancelar_editarResenia"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="60dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.594" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

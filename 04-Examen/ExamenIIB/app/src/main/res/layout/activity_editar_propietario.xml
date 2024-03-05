@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ly_editarProducto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".EditarProducto">
+
+    <EditText
+        android:id="@+id/inp_editarIdProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingresa el ID"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/inp_editarNombre"
+        app:layout_constraintEnd_toEndOf="@+id/inp_editarNombre"
+        app:layout_constraintStart_toStartOf="@+id/inp_editarNombre" />
+
+    <EditText
+        android:id="@+id/inp_editarNombre"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingresa el nombre"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/inp_editarDesc"
+        app:layout_constraintEnd_toEndOf="@+id/inp_editarDesc"
+        app:layout_constraintStart_toStartOf="@+id/inp_editarDesc" />
+
+    <EditText
+        android:id="@+id/inp_editarDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingresa la descripción"
+        android:inputType="text"
+        app:layout_constraintBottom_toTopOf="@+id/inp_editarPrecio"
+        app:layout_constraintEnd_toEndOf="@+id/inp_editarPrecio"
+        app:layout_constraintStart_toStartOf="@+id/inp_editarPrecio" />
+
+    <EditText
+        android:id="@+id/inp_editarPrecio"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Ingresa el precio"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_cancelar_editarprod"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="64dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <Button
+        android:id="@+id/btn_editar_prodexist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_cancelar_editarprod"
+        app:layout_constraintHorizontal_bias="0.48"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619" />
+
+    <TextView
+        android:id="@+id/tv_editarProducto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Editar Producto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.286"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.148" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
