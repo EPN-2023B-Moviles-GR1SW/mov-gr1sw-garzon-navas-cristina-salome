@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.deber03"
+    namespace = "com.example.spotify"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.example.deber03"
+        applicationId = "com.example.spotify"
         minSdk = 24
         targetSdk = 33
         versionCode = 1

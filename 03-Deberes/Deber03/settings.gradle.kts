@@ -13,6 +13,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Deber03"
+rootProject.name = "Spotify"
 include(":app")
  
